@@ -1,0 +1,23 @@
+.header-container {
+  @apply text-white py-4 px-6 flex items-center justify-between;
+}
+
+.logo-wrapper {
+  @apply flex gap-1 items-center;
+}
+
+.nav-list {
+  @apply flex space-x-8 text-gray-300;
+}
+
+.header-btn-wrapper {
+  @apply flex items-center space-x-4;
+}
+
+.header-search-btn {
+  @apply text-gray-400 hover:text-white transition duration-200;
+}
+
+.header-active {
+  @apply text-[#00925d];
+}

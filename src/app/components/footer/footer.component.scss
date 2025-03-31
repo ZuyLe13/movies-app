@@ -1,0 +1,31 @@
+.footer-container {
+  @apply bg-black  py-8 px-6;
+}
+
+.footer-wrapper {
+  @apply flex flex-col md:flex-row justify-between;
+}
+
+.footer-heading {
+  @apply text-4xl font-bold leading-tight;
+}
+
+.footer-nav-wrapper {
+  @apply flex flex-col items-end;
+}
+
+.nav-list {
+  @apply flex space-x-4 mb-6;
+}
+
+.social-wrapper {
+  @apply flex space-x-8 mt-auto;
+}
+
+.copyright-wrapper {
+  @apply flex flex-col justify-between mt-10 md:flex-row items-start md:items-center space-y-2 md:space-y-0 md:space-x-4;
+}
+
+.copyright-item {
+  @apply text-[#676a6d] hover:text-white transition duration-200;
+}

@@ -29,7 +29,7 @@ input:-webkit-autofill:focus {
 }
 
 .btn {
-  @apply border-2 px-5 py-3 rounded-xl transition duration-200 ease-linear;
+  @apply border-2 px-[18px] py-[10px] rounded-xl transition duration-200 ease-linear;
 }
 
 .btn-primary {
