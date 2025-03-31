@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-black text-white;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px black inset !important;
+  -webkit-text-fill-color: white !important;
+  border-color: #242424 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill:focus {
+  border-color: white !important;
+}
+
+.text-error {
+  @apply text-red-500 text-sm mt-1;
+}
+
+.btn {
+  @apply border-2 px-5 py-3 rounded-xl transition duration-200 ease-linear;
+}
+
+.btn-primary {
+  @apply bg-[#00925d] border-[#00925d] hover:opacity-85;
+}
+
+.btn-outline {
+  @apply border-white hover:bg-white hover:text-black;
+}
+
+.sign-btn {
+  @apply border-[#242424] hover:text-white hover:bg-[#0d0c0f] hover:border-white;
+}
+
+.nav-item {
+  @apply hover:text-[#00925d] font-semibold transition duration-200 ease-linear;
+}
+
+.page-cover {
+  background-image: url("/assets/img/bg-auth.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
