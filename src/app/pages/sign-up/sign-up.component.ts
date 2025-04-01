@@ -1,21 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
   selector: 'app-sign-up',
   imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss'
+  styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
-signupForm: FormGroup;
+  signupForm: FormGroup;
   hidePassword = true;
   hideConfirmPassword = true;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.signupForm = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(4)]],
@@ -72,8 +78,14 @@ signupForm: FormGroup;
 
   onSubmit() {
     if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
-      this.router.navigate(['/sign-in']);
+      this.authService.signup(this.signupForm.value).subscribe({
+        next: (response) => {
+          console.log('Signup successful', response);
+        },
+        error: (error) => {
+          console.error('Signup failed', error.error);
+        },
+      });
     }
   }
 
