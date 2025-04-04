@@ -1,0 +1,16 @@
+<div *ngFor="let movie of movies">
+  <div class="movie-card relative text-white">
+    <img 
+      [src]="'https://image.tmdb.org/t/p/original' + movie.backdrop_path" 
+      [alt]="movie.title"
+      class="min-w-full max-h-[calc(100vh_-_120px)] object-cover"
+    >
+
+    <div class="absolute inset-0 bg-gradient-to-t from-black to-[#00000024]"></div>
+
+    <div class="absolute bottom-0 p-4 z-10">
+      <h3 class="text-xl font-semibold">{{ movie.title }}</h3>
+      <p class="text-sm line-clamp-3">{{ movie.overview }}</p>
+    </div>
+  </div>
+</div>
