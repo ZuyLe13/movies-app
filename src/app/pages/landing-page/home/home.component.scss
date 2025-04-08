@@ -1,0 +1,35 @@
+.home {
+  .intro {
+    &-container {
+      @apply relative text-white;
+    }
+
+    &-bg {
+      @apply min-w-full max-h-[100vh] object-cover;
+    }
+
+    &-overlay {
+      @apply absolute inset-0 bg-gradient-to-t from-black to-[#00000024];
+    }
+
+    &-wrapper {
+      @apply absolute bottom-[34%] px-14 z-10;
+    }
+
+    &-heading {
+      @apply text-5xl font-bold;
+    }
+
+    &-decs {
+      @apply text-[16px] max-w-[580px] mt-5;
+    }
+
+    &-btn-wrapper {
+      @apply flex gap-5 mt-6;
+    }
+
+    &-btn {
+      @apply flex items-center gap-2
+    }
+  }
+}

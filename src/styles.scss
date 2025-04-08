@@ -24,10 +24,17 @@ input:-webkit-autofill:focus {
   border-color: white !important;
 }
 
+// Common Style
+
+.app-container {
+  @apply px-14;
+}
+
 .text-error {
   @apply text-red-500 text-sm mt-1;
 }
 
+// Button Custom
 .btn {
   @apply border-2 border-[#999999] px-[18px] py-[10px] rounded-xl transition duration-200 ease-linear;
 }
@@ -52,4 +59,18 @@ input:-webkit-autofill:focus {
   background-image: url("/assets/img/bg-auth.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+// Library SCSS Custom
+.p-carousel-indicator-button {
+  width: 24px !important;
+  height: 10px !important;
+}
+
+.p-carousel-indicator-list {
+  position: absolute;
+  bottom: 60px;
+  right: 50%;
+  transform: translateX(50%);
+  padding: 0 56px !important;
 }

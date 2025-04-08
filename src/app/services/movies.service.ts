@@ -14,7 +14,7 @@ export class MoviesService {
 
   getMovies() {
     return this.http.get(this.moviesUrl).subscribe((response: any) => {
-      this.movies = response.results.slice(0, 10);
+      this.movies = response.results.slice(0, 5);
     }, error => {
       console.error('Lỗi khi lấy danh sách phim:', error);
     })
