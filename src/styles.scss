@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black text-white;
+  @apply bg-[#0d0c0f] text-white;
 }
 
 button {
@@ -25,10 +25,31 @@ input:-webkit-autofill:focus {
 }
 
 // Common Style
-
 .app-container {
   @apply px-14;
 }
+
+.section-heading--lg {
+  @apply text-5xl font-bold;
+}
+
+.section-heading--md {
+  @apply text-2xl font-bold;
+}
+
+.section-title {
+  @apply text-base font-bold;
+}
+
+.section-desc--nm {
+  @apply text-base font-semibold;
+}
+
+.section-desc--sm {
+  @apply text-sm text-[#a09d9d] font-semibold;
+}
+
+
 
 .text-error {
   @apply text-red-500 text-sm mt-1;

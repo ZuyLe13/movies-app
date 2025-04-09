@@ -19,8 +19,9 @@
           >
           <div class="intro-overlay"></div>
           <div class="intro-wrapper">
-            <h3 class="intro-heading">{{ movie.title }}</h3>
-            <p class="intro-decs">{{ movie.overview }}</p>
+            <h2 class="section-heading--lg">{{ movie.title }}</h2>
+            <p class="section-desc--nm intro-decs">{{ movie.overview }}</p>
+            <p></p>
             <div class="intro-btn-wrapper">
                 <button class="btn btn-primary intro-btn">
                   <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -40,5 +41,33 @@
         </div>
       </ng-template>
     </p-carousel>
+  </section>
+
+  <!-- Release -->
+  <section class="release">
+    <div class="app-container">
+      <h2 class="section-heading--md release-heading">Just Release</h2>
+  
+      <p-carousel [value]="movies" [numVisible]="4" [numScroll]="1" [circular]="true" [autoplayInterval]="4000">
+        <ng-template pTemplate="item" let-movie>
+          <article class="release-item">
+            <img 
+              [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path" 
+              [alt]="movie.title"
+              class="release-item__img"
+            >
+            <h2 class="section-title">{{ movie.title }}</h2>
+            <div class="genre-list">
+              <span 
+                class="section-desc--sm genre-item" 
+                *ngFor="let genre of getGenreNames(movie.genre_ids)"
+              >
+                {{ genre }}
+              </span>
+            </div>
+          </article>
+        </ng-template>
+      </p-carousel>
+    </div>
   </section>
 </div>

@@ -1,5 +1,8 @@
 .home {
+  //  ==================== Intro ====================
   .intro {
+    @apply mb-16;
+
     &-container {
       @apply relative text-white;
     }
@@ -16,12 +19,8 @@
       @apply absolute bottom-[34%] px-14 z-10;
     }
 
-    &-heading {
-      @apply text-5xl font-bold;
-    }
-
     &-decs {
-      @apply text-[16px] max-w-[580px] mt-5;
+      @apply max-w-[580px] mt-5;
     }
 
     &-btn-wrapper {
@@ -30,6 +29,25 @@
 
     &-btn {
       @apply flex items-center gap-2
+    }
+  }
+
+  //  ==================== Release ====================
+  .release {
+    &-heading {
+      @apply mb-6;
+    }
+
+    &-list {
+      @apply flex flex-row gap-4;
+    }
+
+    &-item {
+      @apply w-[300px] min-h-[50px] object-cover;
+    }
+
+    &-item__img {
+      @apply max-w-full min-h-[100px] object-cover;
     }
   }
 }
