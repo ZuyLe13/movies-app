@@ -2,25 +2,35 @@
   <!-- Intro -->
   <section class="intro">
     <p-carousel 
-      [value]="movies" 
+      #topCarousel
+      [id]="'top-carousel'"
+      [value]="topRatedMovies" 
       [numVisible]="1" 
       [numScroll]="1" 
-      [circular]="true" 
       [autoplayInterval]="3000"
       [showIndicators]="true"
       [showNavigators]="false"
     >
-      <ng-template let-movie pTemplate="item">
+      <ng-template let-topRatedMovie pTemplate="item">
         <div class="movie-card intro-container">
           <img 
-            [src]="'https://image.tmdb.org/t/p/original' + movie.backdrop_path" 
-            [alt]="movie.title"
+            [src]="'https://image.tmdb.org/t/p/original' + topRatedMovie.backdrop_path" 
+            [alt]="topRatedMovie.title"
             class="intro-bg"
           >
           <div class="intro-overlay"></div>
           <div class="intro-wrapper">
-            <h2 class="section-heading--lg">{{ movie.title }}</h2>
-            <p class="section-desc--nm intro-decs">{{ movie.overview }}</p>
+            <h2 class="section-heading--lg">{{ topRatedMovie.title }}</h2>
+            <div class="flex items-center gap-[6px] mt-3 section-desc--sm">
+              <span>{{ topRatedMovie.formattedRuntime }}</span>
+              <div class="genre-dot"></div>
+              <span>{{ topRatedMovie.release_date?.slice(0, 4) }}</span>
+              <div class="flex items-center gap-[6px]" *ngFor="let genre of getGenreNames(topRatedMovie.genre_ids)">
+                <div class="genre-dot"></div>
+                {{ genre }}
+              </div>
+            </div>
+            <p class="section-desc--nm intro-decs">{{ topRatedMovie.overview }}</p>
             <p></p>
             <div class="intro-btn-wrapper">
                 <button class="btn btn-primary intro-btn">
@@ -48,22 +58,33 @@
     <div class="app-container">
       <h2 class="section-heading--md release-heading">Just Release</h2>
   
-      <p-carousel [value]="movies" [numVisible]="4" [numScroll]="1" [circular]="true" [autoplayInterval]="4000">
-        <ng-template pTemplate="item" let-movie>
+      <p-carousel 
+        #releaseCarousel
+        [id]="'release-carousel'"
+        [value]="nowPlayingMovies" 
+        [numVisible]="4" 
+        [numScroll]="2" 
+        [circular]="true"
+        [showIndicators]="false"
+      >
+        <ng-template let-nowPlayingMovie pTemplate="item">
           <article class="release-item">
             <img 
-              [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path" 
-              [alt]="movie.title"
+              [src]="'https://image.tmdb.org/t/p/original' + nowPlayingMovie.poster_path" 
+              [alt]="nowPlayingMovie.title"
               class="release-item__img"
             >
-            <h2 class="section-title">{{ movie.title }}</h2>
-            <div class="genre-list">
-              <span 
-                class="section-desc--sm genre-item" 
-                *ngFor="let genre of getGenreNames(movie.genre_ids)"
-              >
-                {{ genre }}
-              </span>
+            <div class="release-item__content">
+              <h2 class="section-title">{{ nowPlayingMovie.title }}</h2>
+              <div class="genre-list">
+                <span 
+                  class="section-desc--sm genre-item" 
+                  *ngFor="let genre of getGenreNames(nowPlayingMovie.genre_ids)"
+                >
+                  {{ genre }}
+                  <div class="genre-dot"></div>
+                </span>
+              </div>
             </div>
           </article>
         </ng-template>

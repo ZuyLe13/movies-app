@@ -49,10 +49,12 @@ input:-webkit-autofill:focus {
   @apply text-sm text-[#a09d9d] font-semibold;
 }
 
-
-
 .text-error {
   @apply text-red-500 text-sm mt-1;
+}
+
+.genre-dot {
+  @apply size-1 mt-[4px] bg-[#a09d9d] rounded-full;
 }
 
 // Button Custom
@@ -91,7 +93,21 @@ input:-webkit-autofill:focus {
 .p-carousel-indicator-list {
   position: absolute;
   bottom: 60px;
-  right: 50%;
-  transform: translateX(50%);
-  padding: 0 56px !important;
+  right: 56px;
+}
+
+// .p-carousel-item-list {
+//   transform: translate3d(0, 0, 0) !important;
+// }
+
+.p-carousel-item {
+  flex: 1 0 23%;
+}
+
+.p-carousel-content {
+  display: block !important;
+}
+
+.p-carousel-prev-button {
+  display: none !important;
 }
