@@ -34,6 +34,8 @@
 
   //  ==================== Release ====================
   .release {
+    @apply mb-16;
+
     &-heading {
       @apply mb-6;
     }
@@ -43,40 +45,80 @@
     }
 
     &-item {
-      @apply relative w-[300px] min-h-[50px] object-cover;
-    }
+      @apply relative w-[300px] min-h-[50px] cursor-pointer;
 
-    .release-item::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-      z-index: 5;
-      border-bottom-left-radius: 14px;
-      border-bottom-right-radius: 14px;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        z-index: 5;
+        border-bottom-left-radius: 22px;
+        border-bottom-right-radius: 22px;
+      }
     }
 
     &-item__img {
-      @apply max-w-full min-h-[100px] rounded-2xl object-cover;
+      @apply max-w-full min-h-[100px] rounded-3xl object-cover;
     }
 
     &-item__content {
       @apply absolute z-10 bottom-5 left-4;
     }
 
-    .genre-list {
-      @apply flex items-center gap-[6px];
-    }
+    .rating {
+      position: relative;
 
-    .genre-item {
-      @apply flex items-center gap-[6px];
-
-      &:last-child .genre-dot {
-        display: none;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 5px;
+        right: -9px;
+        width: 2px;
+        height: 16px;
+        background: #a09d9d;
       }
     }
+
+    swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .popular {
+    @apply mb-16;
+
+    &-item {
+      @apply flex items-center gap-3 mt-6;
+    }
+
+    &-item__img {
+      @apply w-36 h-40 rounded-3xl object-cover;
+    }
+
+    &-item__content {
+      @apply flex flex-col gap-2
+    }
+  }
+
+  .genre-list {
+    @apply flex items-center gap-[6px];
+  }
+
+  .genre-item {
+    @apply flex items-center gap-[6px];
+
+    &:last-child .genre-dot {
+      display: none;
+    }
+  }
+
+  .rating {
+    @apply text-white
   }
 }

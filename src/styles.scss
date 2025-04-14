@@ -85,29 +85,63 @@ input:-webkit-autofill:focus {
 }
 
 // Library SCSS Custom
-.p-carousel-indicator-button {
-  width: 24px !important;
-  height: 10px !important;
+swiper-container::part(pagination) {
+  right: 54px;
+  left: auto;
+  bottom: 40px;
+  width: auto;
 }
 
-.p-carousel-indicator-list {
+swiper-container::part(bullet-active) {
+  margin-bottom: 20px;
+  width: 24px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #00925d;
+}
+
+swiper-container::part(bullet) {
+  margin-bottom: 20px;
+  width: 24px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #817979;
+  opacity: 0.5;
+}
+
+swiper-container::part(button-prev) {
+  display: none;
+}
+
+swiper-container::part(button-next) {
+  visibility: hidden;
+  @apply size-10 right-0 text-white bg-[#28262d] rounded-full;
+}
+
+swiper-container::part(button-next)::before {
+  content: "";
   position: absolute;
-  bottom: 60px;
-  right: 56px;
+  top: 0;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+  background: #28262d;
+  border-radius: 999px;
+  visibility: visible;
+  overflow: visible;
+  transition: background-color 0.3s ease;
 }
 
-// .p-carousel-item-list {
-//   transform: translate3d(0, 0, 0) !important;
-// }
-
-.p-carousel-item {
-  flex: 1 0 23%;
+swiper-container::part(button-next):hover::before {
+  background-color: #00925d;
 }
 
-.p-carousel-content {
-  display: block !important;
-}
-
-.p-carousel-prev-button {
-  display: none !important;
+swiper-container::part(button-next)::after {
+  content: url("./assets/icons/chevron-right-solid.svg");
+  position: absolute;
+  top: 11px;
+  right: 14px;
+  width: 12px;
+  visibility: visible;
 }

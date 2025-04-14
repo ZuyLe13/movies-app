@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { MoviesService } from '../../../services/movies.service';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
@@ -8,11 +8,13 @@ import { CarouselModule } from 'primeng/carousel';
   selector: 'app-home',
   imports: [CommonModule, CarouselModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent implements OnInit {
   topRatedMovies: any[] = [];
-  nowPlayingMovies: any[] = [];
+  releaseMovies: any[] =[];
+  popularMovies: any[] =[];
   genresMap: { [id: number]: string } = {};
 
   constructor(private moviesService: MoviesService) {}
@@ -28,21 +30,29 @@ export class HomeComponent implements OnInit {
       this.moviesService.getTopRatedMovies().subscribe((data: any) => {
         this.topRatedMovies = data.results.slice(0, 5);
 
-        this.topRatedMovies.forEach((movie, index) => {
+        this.topRatedMovies.forEach((movie) => {
           this.moviesService.getMovieDetail(movie.id).subscribe((detail: any) => {
             movie.formattedRuntime = this.formatRuntime(detail.runtime);
           })
         })
       });
 
-      this.moviesService.getNowPlayingMovies().subscribe((data: any) => {
-        this.nowPlayingMovies = data.results.slice(0, 10);
+      this.moviesService.getMovies(1).subscribe((data: any) => {
+        this.releaseMovies = data.results.slice(0, 10);
+      })
+
+      this.moviesService.getMovies(2).subscribe((data: any) => {
+        this.popularMovies = data.results.slice(0, 10);
       })
     });
   }
 
   getGenreNames(genreIds: number[]): string[] {
-    return genreIds.map(id => this.genresMap[id]).filter(name => !!name);
+    return genreIds.map(id => this.genresMap[id]).filter(name => !!name).slice(0, 2);
+  }
+
+  getVoteAverage(movie: any): string {
+    return (movie.vote_average / 2).toFixed(1);
   }
 
   formatRuntime(minutes: number): string {

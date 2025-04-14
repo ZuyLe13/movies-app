@@ -9,10 +9,10 @@ import { environment } from '../../environments/environment';
 export class MoviesService {
   private genreUrl = `${environment.apiUrl}/genre/movie/list?language=en&api_key=${environment.apiKey}`;
   private topRatedMoviesUrl = `${environment.apiUrl}/movie/top_rated?language=en-US&page=1&api_key=${environment.apiKey}`;
-  private nowPlayingMoviesUrl = `${environment.apiUrl}/movie/now_playing?language=en-US&page=1&api_key=${environment.apiKey}`;
   
   topRatedMovies: any[] = [];
   genres: any[] = [];
+  popularMovies: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +28,7 @@ export class MoviesService {
     return this.http.get(`${environment.apiUrl}/movie/${id}?language=en-US&api_key=${environment.apiKey}`)
   }
 
-  getNowPlayingMovies() {
-    return this.http.get(this.nowPlayingMoviesUrl);
+  getMovies(page: number) {
+    return this.http.get(`${environment.apiUrl}/movie/now_playing?language=en-US&page=${page}&api_key=${environment.apiKey}`);
   }
 }

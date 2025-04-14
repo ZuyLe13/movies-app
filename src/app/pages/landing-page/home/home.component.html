@@ -1,21 +1,19 @@
 <div class="home">
   <!-- Intro -->
   <section class="intro">
-    <p-carousel 
-      #topCarousel
-      [id]="'top-carousel'"
-      [value]="topRatedMovies" 
-      [numVisible]="1" 
-      [numScroll]="1" 
-      [autoplayInterval]="3000"
-      [showIndicators]="true"
-      [showNavigators]="false"
+    <swiper-container 
+      pagination="true"
+      slides-per-view="1"
+      pagination-clickable="true"
+      autoplay-delay="3000"
+      class="intro-swiper"
     >
-      <ng-template let-topRatedMovie pTemplate="item">
+      <swiper-slide *ngFor="let topRatedMovie of topRatedMovies">
         <div class="movie-card intro-container">
           <img 
             [src]="'https://image.tmdb.org/t/p/original' + topRatedMovie.backdrop_path" 
             [alt]="topRatedMovie.title"
+            loading="lazy"
             class="intro-bg"
           >
           <div class="intro-overlay"></div>
@@ -31,64 +29,107 @@
               </div>
             </div>
             <p class="section-desc--nm intro-decs">{{ topRatedMovie.overview }}</p>
-            <p></p>
             <div class="intro-btn-wrapper">
-                <button class="btn btn-primary intro-btn">
-                  <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path fill="#ffffff" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"/>
-                  </svg>
-                  Watch Trailer
-                </button>
-                
-                <button class="btn btn-outline intro-btn">
-                  <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                    <path fill="#ffffff" d="M0 48C0 21.5 21.5 0 48 0l0 48 0 393.4 130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4 336 48 48 48 48 0 336 0c26.5 0 48 21.5 48 48l0 440c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488L0 48z"/>
-                  </svg>
-                  Add Watchlist
-                </button>
+              <button class="btn btn-primary intro-btn">
+                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#ffffff" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"/>
+                </svg>
+                Watch Trailer
+              </button>
+              <button class="btn btn-outline intro-btn">
+                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <path fill="#ffffff" d="M0 48C0 21.5 21.5 0 48 0l0 48 0 393.4 130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4 336 48 48 48 48 0 336 0c26.5 0 48 21.5 48 48l0 440c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488L0 48z"/>
+                </svg>
+                Add Watchlist
+              </button>
             </div>
           </div>
         </div>
-      </ng-template>
-    </p-carousel>
+      </swiper-slide>
+    </swiper-container>
   </section>
-
+  
   <!-- Release -->
   <section class="release">
     <div class="app-container">
-      <h2 class="section-heading--md release-heading">Just Release</h2>
+      <h2 class="section-heading--md release-heading">Just Released</h2>
   
-      <p-carousel 
-        #releaseCarousel
-        [id]="'release-carousel'"
-        [value]="nowPlayingMovies" 
-        [numVisible]="4" 
-        [numScroll]="2" 
-        [circular]="true"
-        [showIndicators]="false"
+      <swiper-container 
+        loop="true" 
+        pagination="false"
+        slides-per-view="5"
+        space-between="20"
+        navigation="true"
+        free-mode="true"
+        slides-per-group="2"
+        autoplay-delay="3000"
       >
-        <ng-template let-nowPlayingMovie pTemplate="item">
+        <swiper-slide *ngFor="let movie of releaseMovies">
           <article class="release-item">
             <img 
-              [src]="'https://image.tmdb.org/t/p/original' + nowPlayingMovie.poster_path" 
-              [alt]="nowPlayingMovie.title"
+              [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path" 
+              [alt]="movie.title"
               class="release-item__img"
             >
             <div class="release-item__content">
-              <h2 class="section-title">{{ nowPlayingMovie.title }}</h2>
+              <h2 class="section-title">{{ movie.title }}</h2>
+              <div class="flex gap-4">
+                <span class="section-desc--sm rating">⭐{{ getVoteAverage(movie) }}</span>
+                <div class="genre-list">
+                  <span 
+                    class="section-desc--sm genre-item" 
+                    *ngFor="let genre of getGenreNames(movie.genre_ids)"
+                  >
+                    {{ genre }}
+                    <div class="genre-dot"></div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </section>
+
+  <!-- Popular -->
+   <section class="popular">
+    <div class="app-container">
+      <h2 class="section-heading--md popular-heading">Popular of the week</h2>
+
+      <swiper-container 
+        loop="true" 
+        pagination="false"
+        slides-per-view="4"
+        space-between="20"
+        navigation="true"
+        free-mode="true"
+        slides-per-group="2"
+      >
+        <swiper-slide *ngFor="let movie of popularMovies; let i = index">
+          <article class="popular-item">
+            <h2 class="section-heading--lg">{{ i + 1 }}</h2>
+            <img 
+              [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path" 
+              [alt]="movie.title"
+              class="popular-item__img"
+            >
+            <div class="popular-item__content">
+              <h3 class="section-title popular-item__title">{{ movie.title }}</h3>
               <div class="genre-list">
                 <span 
                   class="section-desc--sm genre-item" 
-                  *ngFor="let genre of getGenreNames(nowPlayingMovie.genre_ids)"
+                  *ngFor="let genre of getGenreNames(movie.genre_ids)"
                 >
                   {{ genre }}
                   <div class="genre-dot"></div>
                 </span>
               </div>
+              <span class="section-desc--sm rating">⭐ {{ getVoteAverage(movie) }}</span>
             </div>
           </article>
-        </ng-template>
-      </p-carousel>
+        </swiper-slide>
+      </swiper-container>
     </div>
-  </section>
+   </section>
 </div>
