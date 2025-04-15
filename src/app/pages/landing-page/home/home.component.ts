@@ -15,7 +15,9 @@ export class HomeComponent implements OnInit {
   topRatedMovies: any[] = [];
   releaseMovies: any[] =[];
   popularMovies: any[] =[];
+  featureMovies: any = [];
   genresMap: { [id: number]: string } = {};
+  selectedMovie: any;
 
   constructor(private moviesService: MoviesService) {}
 
@@ -43,6 +45,16 @@ export class HomeComponent implements OnInit {
 
       this.moviesService.getMovies(2).subscribe((data: any) => {
         this.popularMovies = data.results.slice(0, 10);
+      })
+
+      this.moviesService.getMovies(3).subscribe((data: any) => {
+        this.featureMovies = data.results.slice(0, 1);
+
+        this.featureMovies.forEach((movie) => {
+          this.moviesService.getMovieDetail(movie.id).subscribe((detail: any) => {
+            movie.formattedRuntime = this.formatRuntime(detail.runtime);
+          });
+        });
       })
     });
   }
