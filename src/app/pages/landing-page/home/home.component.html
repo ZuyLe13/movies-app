@@ -134,7 +134,7 @@
    </section>
 
    <!-- Feature -->
-    <section class="feature">
+    <!-- <section class="feature">
       <div class="app-container">
         <div class="left-content">
           <div class="left-content__top">
@@ -174,5 +174,100 @@
         </div>
         <div class="right-content"></div>
       </div>
-    </section>
+    </section> -->
+
+    <!-- featured-movies.component.html -->
+    <div class="relative w-full h-full overflow-hidden">
+      <!-- Background with gradient overlay -->
+      <div class="app-container">
+        <div class="absolute inset-0 w-full h-full">
+          <img 
+            *ngIf="activeMovie"
+            [src]="'https://image.tmdb.org/t/p/original' + activeMovie?.backdrop_path" 
+            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500" 
+            alt="Background"
+          />
+          <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+        </div>
+      
+        <div class="relative z-10 container mx-auto px-4 py-6">
+          <div class="flex flex-col md:flex-row gap-8">
+            <!-- Left Content -->
+            <div class="w-full md:w-1/2 text-white flex flex-col justify-center">
+              <h2 class="text-xl font-medium mb-1">Featured in SaintStream</h2>
+              <p class="text-gray-300 mb-4">Best featured for you today</p>
+              
+              <p class="text-sm font-semibold mb-1" *ngIf="activeMovie">
+                #{{activeIndex + 1}} in Australia
+              </p>
+              <h1 class="text-4xl md:text-5xl font-bold mb-2" *ngIf="activeMovie">
+                {{activeMovie?.title}}
+              </h1>
+              
+              <div class="flex items-center gap-2 mb-4" *ngIf="activeMovie">
+                <div class="flex items-center">
+                  <span class="text-yellow-400">★</span>
+                  <span class="ml-1">{{getVoteAverage(activeMovie)}}</span>
+                </div>
+                <span *ngIf="activeMovie?.formattedRuntime" class="text-gray-300">
+                  • {{activeMovie?.formattedRuntime}}
+                </span>
+                <span class="text-gray-300">• {{activeMovie?.release_date | slice:0:4}}</span>
+                <ng-container *ngFor="let genre of getGenreNames(activeMovie?.genre_ids); let last = last">
+                  <span class="text-gray-300">
+                    • {{genre}}
+                  </span>
+                </ng-container>
+              </div>
+              
+              <p class="text-gray-200 mb-4" *ngIf="activeMovie">{{activeMovie?.overview}}</p>
+      
+              <div class="flex gap-4 mt-4">
+                <button class="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-md transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                  </svg>
+                  Play Now
+                </button>
+                <button class="flex items-center justify-center gap-2 border border-white/30 hover:bg-white/10 text-white py-2 px-6 rounded-md transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                  </svg>
+                  Add Watchlist
+                </button>
+              </div>
+            </div>
+      
+            <!-- Right Slider -->
+            <div class="w-full md:w-1/2">
+              <swiper-container #swiperRef init="false" class="w-full">
+                <swiper-slide *ngFor="let movie of featureMovies; let i = index" class="w-64 h-auto" (click)="onSlideClick(i)">
+                  <div class="relative overflow-hidden rounded-lg bg-gray-900 transition-transform duration-300 cursor-pointer" 
+                       [ngClass]="{'scale-95 opacity-80': i !== activeIndex, 'scale-100': i === activeIndex}">
+                    <div class="relative aspect-[2/3]">
+                      <img [src]="'https://image.tmdb.org/t/p/original' + movie.poster_path" class="w-full h-full object-cover" [alt]="movie.title">
+                      <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+                        <h3 class="text-lg font-semibold text-white">{{movie.title}}</h3>
+                        <div class="flex items-center gap-2 text-sm text-gray-300 mt-1">
+                          <div class="flex items-center">
+                            <span class="text-yellow-400">★</span>
+                            <span class="ml-1">{{getVoteAverage(movie)}}</span>
+                          </div>
+                          <ng-container *ngFor="let genre of getGenreNames(movie.genre_ids); let last = last">
+                            <span>
+                              {{genre}}{{!last ? ' • ' : ''}}
+                            </span>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </swiper-slide>
+              </swiper-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 </div>
