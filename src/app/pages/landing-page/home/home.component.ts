@@ -1,12 +1,11 @@
 import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../../../services/movies.service';
 import { CommonModule } from '@angular/common';
-import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [CommonModule, CarouselModule],
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -24,7 +23,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   constructor(
     private moviesService: MoviesService,
-    private cdr: ChangeDetectorRef // Add ChangeDetectorRef
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -73,7 +72,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.setupSwiper();
-    }, 500); // Small delay to ensure Swiper is properly initialized
+    }, 500);
   }
 
   setupSwiper(): void {

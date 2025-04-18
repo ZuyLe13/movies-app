@@ -4,6 +4,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
+  standalone: true,
   selector: 'app-landing-page',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './landing-page.component.html',

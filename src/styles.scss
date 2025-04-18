@@ -1,9 +1,14 @@
+@use './style/color' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   @apply bg-[#0d0c0f] text-white;
+  font-family: "Rubik", sans-serif;
 }
 
 button {
@@ -30,19 +35,55 @@ input:-webkit-autofill:focus {
 }
 
 .section-heading--lg {
-  @apply text-5xl font-bold;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: 0.16px;
 }
 
-.section-heading--md {
-  @apply text-2xl font-bold;
+.section-heading {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: 0.12px;
 }
 
 .section-title {
-  @apply text-base font-bold;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.08px;
 }
 
-.section-desc--nm {
-  @apply text-base font-semibold;
+.section-desc {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--desc);
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.08px;
+}
+
+.section-desc--sm {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 166.667% */
+  letter-spacing: 0.06px;
+}
+
+.section-desc
+
+.genre {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--desc);
+  line-height: 22px; /* 157.143% */
+  letter-spacing: 0.07px;
 }
 
 .section-desc--sm {
@@ -59,11 +100,11 @@ input:-webkit-autofill:focus {
 
 // Button Custom
 .btn {
-  @apply border-2 border-[#999999] px-[18px] py-[10px] rounded-xl transition duration-200 ease-linear;
+  @apply border-2 border-[var(--btn-border)] px-[18px] py-[10px] rounded-xl transition duration-200 ease-linear;
 }
 
 .btn-primary {
-  @apply bg-[#00925d] border-[#00925d] hover:bg-[#007a4a] hover:border-[#007a4a];
+  @apply bg-[var(--primary)] border-[var(--primary)] hover:bg-[var(--primary-hover)] hover:border-[var(--primary-hover)];
 }
 
 .btn-outline {
@@ -75,7 +116,7 @@ input:-webkit-autofill:focus {
 }
 
 .nav-item {
-  @apply hover:text-[#00925d] font-semibold transition duration-200 ease-linear;
+  @apply hover:text-[var(--primary)] font-semibold transition duration-200 ease-linear;
 }
 
 .page-cover {
@@ -97,7 +138,7 @@ swiper-container::part(bullet-active) {
   width: 24px;
   height: 10px;
   border-radius: 10px;
-  background-color: #00925d;
+  background-color: var(--primary);
 }
 
 swiper-container::part(bullet) {
@@ -134,7 +175,7 @@ swiper-container::part(button-next)::before {
 }
 
 swiper-container::part(button-next):hover::before {
-  background-color: #00925d;
+  background-color: var(--primary);
 }
 
 swiper-container::part(button-next)::after {

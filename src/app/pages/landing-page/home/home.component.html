@@ -133,51 +133,8 @@
     </div>
    </section>
 
-   <!-- Feature -->
-    <!-- <section class="feature">
-      <div class="app-container">
-        <div class="left-content">
-          <div class="left-content__top">
-            <h3 class="section-heading--md">Feature in Saint Stream</h3>
-            <p class="section-title">Best featured for you today</p>
-          </div>
-          <div class="left-content__bottom">
-            <div class="feature-wrapper" *ngFor="let movie of featureMovies">
-              <h2 class="section-heading--lg">{{ movie.title }}</h2>
-              <div class="flex items-center gap-[6px] mt-3 section-desc--sm">
-                <span>{{ movie.formattedRuntime }}</span>
-                <div class="genre-dot"></div>
-                <span>{{ movie.release_date?.slice(0, 4) }}</span>
-                <div class="flex items-center gap-[6px]" *ngFor="let genre of getGenreNames(movie.genre_ids)">
-                  <div class="genre-dot"></div>
-                  {{ genre }}
-                </div>
-              </div>
-              <p class="section-desc--nm intro-decs">{{ movie.overview }}</p>
-              <div class="intro-btn-wrapper">
-                <button class="btn btn-primary intro-btn">
-                  <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path fill="#ffffff" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"/>
-                  </svg>
-                  Watch Trailer
-                </button>
-                <button class="btn btn-outline intro-btn">
-                  <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                    <path fill="#ffffff" d="M0 48C0 21.5 21.5 0 48 0l0 48 0 393.4 130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4 336 48 48 48 48 0 336 0c26.5 0 48 21.5 48 48l0 440c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488L0 48z"/>
-                  </svg>
-                  Add Watchlist
-                </button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="right-content"></div>
-      </div>
-    </section> -->
-
-    <!-- featured-movies.component.html -->
-    <div class="relative w-full h-full overflow-hidden">
+    <!-- Featured -->
+    <section class="feature">
       <!-- Background with gradient overlay -->
       <div class="app-container">
         <div class="absolute inset-0 w-full h-full">
@@ -187,8 +144,9 @@
             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500" 
             alt="Background"
           />
-          <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent"></div>
         </div>
+        <div class="feature-overlay"></div>
       
         <div class="relative z-10 container mx-auto px-4 py-6">
           <div class="flex flex-col md:flex-row gap-8">
@@ -222,16 +180,16 @@
               
               <p class="text-gray-200 mb-4" *ngIf="activeMovie">{{activeMovie?.overview}}</p>
       
-              <div class="flex gap-4 mt-4">
-                <button class="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-md transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+              <div class="intro-btn-wrapper">
+                <button class="btn btn-primary intro-btn">
+                  <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="#ffffff" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"/>
                   </svg>
-                  Play Now
+                  Watch Trailer
                 </button>
-                <button class="flex items-center justify-center gap-2 border border-white/30 hover:bg-white/10 text-white py-2 px-6 rounded-md transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                <button class="btn btn-outline intro-btn">
+                  <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path fill="#ffffff" d="M0 48C0 21.5 21.5 0 48 0l0 48 0 393.4 130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4 336 48 48 48 48 0 336 0c26.5 0 48 21.5 48 48l0 440c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488L0 48z"/>
                   </svg>
                   Add Watchlist
                 </button>
@@ -268,6 +226,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
     
 </div>

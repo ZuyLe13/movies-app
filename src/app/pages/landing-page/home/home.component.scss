@@ -75,7 +75,7 @@
       &::after {
         content: "";
         position: absolute;
-        top: 5px;
+        top: 3px;
         right: -9px;
         width: 2px;
         height: 16px;
@@ -103,6 +103,21 @@
 
     &-item__content {
       @apply flex flex-col gap-2
+    }
+  }
+
+  .feature {
+    @apply relative w-full h-full py-32 overflow-hidden;
+    
+    &-overlay {
+      @apply absolute inset-0;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.5) 40%,
+        rgba(0, 0, 0, 0.5) 60%,
+        rgba(0, 0, 0, 1) 100%
+      );
     }
   }
 
