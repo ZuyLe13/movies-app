@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
 
       this.moviesService.getMovies(3).subscribe((data: any) => {
-        this.featureMovies = data.results.slice(0, 5);
+        this.featureMovies = data.results.slice(0, 10);
 
         this.featureMovies.forEach((movie) => {
           this.moviesService.getMovieDetail(movie.id).subscribe((detail: any) => {

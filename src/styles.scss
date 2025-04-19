@@ -7,7 +7,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#0d0c0f] text-white;
+  @apply bg-[#0d0c0f] text-[#F9F9F9];
   font-family: "Rubik", sans-serif;
 }
 
@@ -35,72 +35,83 @@ input:-webkit-autofill:focus {
 }
 
 .section-heading--lg {
-  font-size: 32px;
-  font-style: normal;
+  font-size: 50px;
   font-weight: 700;
-  line-height: 40px;
-  letter-spacing: 0.16px;
+}
+
+.section-heading--md {
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .section-heading {
   font-size: 24px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 32px; /* 133.333% */
-  letter-spacing: 0.12px;
 }
 
 .section-title {
   font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 24px; /* 150% */
-  letter-spacing: 0.08px;
+  font-weight: 600;
+}
+
+.section-text {
+  font-size: 14px;
+  font-weight: 600;
+
+  &--sm {
+    color: var(--desc);
+  }
 }
 
 .section-desc {
   font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--desc);
-  line-height: 24px; /* 150% */
-  letter-spacing: 0.08px;
 }
 
 .section-desc--sm {
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 20px; /* 166.667% */
-  letter-spacing: 0.06px;
+  color: var(--desc);
 }
-
-.section-desc
 
 .genre {
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
   color: var(--desc);
-  line-height: 22px; /* 157.143% */
-  letter-spacing: 0.07px;
-}
-
-.section-desc--sm {
-  @apply text-sm text-[#a09d9d] font-semibold;
 }
 
 .text-error {
   @apply text-red-500 text-sm mt-1;
 }
 
+.genre-list {
+  @apply flex items-center gap-[6px];
+}
+
 .genre-dot {
-  @apply size-1 mt-[4px] bg-[#a09d9d] rounded-full;
+  @apply size-1 bg-[#a09d9d] rounded-full;
+}
+
+.overlay-b {
+  @apply absolute inset-0 bg-gradient-to-t from-black to-[#00000024];
+}
+
+.overlay-tb {
+  @apply absolute inset-0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
 
 // Button Custom
 .btn {
-  @apply border-2 border-[var(--btn-border)] px-[18px] py-[10px] rounded-xl transition duration-200 ease-linear;
+  @extend .section-text;
+  @apply border-2 border-[var(--btn-border)] px-[20px] py-[12px] rounded-xl transition duration-200 ease-linear;
 }
 
 .btn-primary {
@@ -108,7 +119,7 @@ input:-webkit-autofill:focus {
 }
 
 .btn-outline {
-  @apply hover:bg-white hover:text-black hover:border-white;
+  @apply hover:bg-white hover:text-[var(--text-black)] hover:border-white;
 }
 
 .sign-btn {
@@ -125,7 +136,23 @@ input:-webkit-autofill:focus {
   background-size: cover;
 }
 
+.genre-item {
+  @apply flex items-center gap-[6px];
+
+  &:last-child .genre-dot {
+    display: none;
+  }
+}
+
+.rating {
+  @apply text-white
+}
+
 // Library SCSS Custom
+// swiper-slide {
+//   @apply flex items-center justify-center;
+// }
+
 swiper-container::part(pagination) {
   right: 54px;
   left: auto;
@@ -156,7 +183,7 @@ swiper-container::part(button-prev) {
 
 swiper-container::part(button-next) {
   visibility: hidden;
-  @apply size-10 right-0 text-white bg-[#28262d] rounded-full;
+  @apply size-10 right-0 text-white bg-[var(--btn-next)] rounded-full;
 }
 
 swiper-container::part(button-next)::before {
@@ -167,7 +194,7 @@ swiper-container::part(button-next)::before {
   width: 16px;
   height: 16px;
   padding: 12px;
-  background: #28262d;
+  background: var(--btn-next);
   border-radius: 999px;
   visibility: visible;
   overflow: visible;
@@ -179,10 +206,8 @@ swiper-container::part(button-next):hover::before {
 }
 
 swiper-container::part(button-next)::after {
-  content: url("./assets/icons/chevron-right-solid.svg");
+  content: url("./assets/icons/arrow-right.svg");
   position: absolute;
-  top: 11px;
-  right: 14px;
-  width: 12px;
+  top: 10px;
   visibility: visible;
 }

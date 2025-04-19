@@ -1,3 +1,5 @@
+@use '../../../../style/color.scss' as *;
+
 .home {
   //  ==================== Intro ====================
   .intro {
@@ -11,16 +13,16 @@
       @apply min-w-full max-h-[100vh] object-cover;
     }
 
-    &-overlay {
-      @apply absolute inset-0 bg-gradient-to-t from-black to-[#00000024];
-    }
-
     &-wrapper {
       @apply absolute bottom-[34%] px-14 z-10;
     }
 
-    &-decs {
-      @apply max-w-[580px] mt-3;
+    &-content {
+      @apply flex items-center gap-[6px] mt-3;
+    }
+
+    &-desc {
+      @apply max-w-[580px] mt-3 text-white;
     }
 
     &-btn-wrapper {
@@ -48,16 +50,9 @@
       @apply relative w-[300px] min-h-[50px] cursor-pointer;
 
       &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 40%;
+        @apply content-[''] absolute bottom-0 
+        left-0 w-full h-[40%] z-[5] rounded-b-[22px];
         background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-        z-index: 5;
-        border-bottom-left-radius: 22px;
-        border-bottom-right-radius: 22px;
       }
     }
 
@@ -73,20 +68,9 @@
       position: relative;
 
       &::after {
-        content: "";
-        position: absolute;
-        top: 3px;
-        right: -9px;
-        width: 2px;
-        height: 16px;
-        background: #a09d9d;
+        @apply content-[''] absolute top-[2px] right-[-9px] 
+        w-[1px] h-[14px] bg-[var(--desc)];
       }
-    }
-
-    swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
   }
 
@@ -107,33 +91,50 @@
   }
 
   .feature {
-    @apply relative w-full h-full py-32 overflow-hidden;
-    
-    &-overlay {
-      @apply absolute inset-0;
-      background-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.5) 40%,
-        rgba(0, 0, 0, 0.5) 60%,
-        rgba(0, 0, 0, 1) 100%
-      );
+    @apply relative w-full h-full py-24 overflow-hidden;
+
+    &-bg {
+      @apply absolute inset-0 w-full h-full;
+
+      &__img {
+        @apply absolute inset-0 w-full h-full 
+        object-cover transition-opacity duration-500;
+      }
     }
-  }
 
-  .genre-list {
-    @apply flex items-center gap-[6px];
-  }
-
-  .genre-item {
-    @apply flex items-center gap-[6px];
-
-    &:last-child .genre-dot {
-      display: none;
+    &-wrapper {
+      @apply relative flex md:flex-row flex-col gap-8 
+      z-10 px-4 py-6;
     }
-  }
 
-  .rating {
-    @apply text-white
+    &-left {
+      @apply w-full md:w-[35%];
+    }
+
+    &-sub {
+      @apply text-[20px] font-light mb-20;
+    }
+
+    &-rank {
+      @apply px-4 py-2 bg-[#28262d87] rounded-full w-fit 
+      text-base font-semibold mb-3;
+    }
+
+    &-runtime {
+      @apply relative ml-[10px];
+
+      &::before {
+        @apply content-[''] absolute top-[3px] left-[-8px] 
+        w-[1.5px] h-[16px] bg-[var(--desc)];
+      }
+    }
+
+    &-overview {
+      @apply text-white max-w-[580px] mb-4;
+    }
+
+    &-right {
+      @apply w-full md:w-[65%];
+    }
   }
 }
